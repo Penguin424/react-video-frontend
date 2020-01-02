@@ -17,7 +17,8 @@ module.exports = {
                 test: /\.(js|jsx)$/,
                 exclude: /node_modules/,
                 use: {
-                    loader: "babel-loader"
+                    loader: "babel-loader",
+                    
                 }
             },
             {
@@ -37,6 +38,15 @@ module.exports = {
                     'css-loader',
                     'sass-loader'
                 ]
+            },
+            {
+                test: /\.(png|gif|jpg)$/,
+                use: [
+                  {
+                    loader: 'file-loader',
+                    options: { name: 'assets/[hash].[ext]' },
+                  }
+                ],
             }
         ]
     },
