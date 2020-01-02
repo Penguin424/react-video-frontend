@@ -4,7 +4,7 @@ import proptypes from 'prop-types';
 import {CarouselItem} from './CarouselItem';
 import '../../../assets/styles/components/Carousel.scss';
 
-const Carousel = ({children, dataList}) => {
+const Carousel = ({dataList}) => {
 
     const [dataI, setDataI] = useState([]);
 
