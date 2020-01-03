@@ -1,54 +1,56 @@
 import React, {useEffect, useState} from 'react';
 import proptypes from 'prop-types';
 
-import {CarouselItem} from './CarouselItem';
+import CarouselItem from './CarouselItem';
 import '../../../assets/styles/components/Carousel.scss';
 
 const Carousel = ({dataList}) => {
 
     const [dataI, setDataI] = useState([]);
 
-    const setItemList = (dataItem) =>
-    {
+    // const setItemList = (dataItem) =>
+    // {
         
-        if(dataItem === undefined)
-        {
-            console.log('primer if');
+    //     if(dataItem === undefined)
+    //     {
+    //         console.log('primer if');
             
-        }
-        else
-        {
+    //     }
+    //     else
+    //     {
 
-            setDataI(dataItem);
+    //         setDataI(dataItem);
 
-        }
-    }
+    //     }
+    // }
 
     const itemList = (dataItem) =>
     {
-        return dataItem.map((i) => 
+        return dataItem.map((i, index) => 
         {
 
-            const {title, duration, id, year, cover} = i;
+            const {title, duration, year, cover, id, isList} = i;
 
             return <CarouselItem 
                     title={title} 
                     duration={duration} 
                     year={year} 
-                    key={id} 
-                    imgI={cover} 
+                    key={index} 
+                    cover={cover}
+                    id={id} 
+                    isList={isList}
                     />
         })
     }
 
     useEffect(() => {
-        setItemList(dataList);
-    }, [])
+        setDataI(dataList);
+    }, [dataList])
 
     return (
         <section className="carousel">
             <div className="carousel__container">
-                {dataI.length === 0 ?  <h3>cargando...</h3> : itemList(dataI)}
+                {itemList(dataI)}
             </div>
         </section>  
     );

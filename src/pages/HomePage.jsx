@@ -1,28 +1,31 @@
 import React from 'react';
+import {connect} from 'react-redux'
 
 import {Search} from '../components/Search.jsx';
 import {Categories} from '../components/Categories/Categories.jsx'
 import '../assets/styles/App.scss';
 
-const API = 'http://localhost:3000/initalState';
 
-import {useInitialState} from '../hooks/initialStateLess.js';
-
-const HomePage = () => {
-
-    const dataState = useInitialState(API);
+const HomePage = ({trends, originals, myList}) => {
 
 
-    return (
 
-        
-
+    return (        
         <div className="App">
             <Search/>
-            {dataState.length === 0 ? <h3>cargando...</h3> : <Categories data={dataState.trends}>Trends</Categories>}
-            {dataState.length === 0 ? <h3>cargando...</h3> : <Categories data={dataState.originals}>Originals</Categories>}
+            {myList.length > 0 && <Categories data={myList} isList >Favoritos</Categories>};
+            <Categories data={trends} isList>Trends</Categories>
+            <Categories data={originals} isList>Originals</Categories>
         </div>
     );
 };
 
-export {HomePage};
+const mapStateToProps = state => {
+    return {
+        myList: state.myList,
+        trends: state.trends,
+        originals: state.originals
+    }
+}
+
+export default connect(mapStateToProps, null)(HomePage)
