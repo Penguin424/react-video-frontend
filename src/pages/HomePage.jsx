@@ -13,9 +13,9 @@ const HomePage = ({trends, originals, myList}) => {
     return (        
         <div className="App">
             <Search/>
-            {myList.length > 0 && <Categories data={myList} isList >Favoritos</Categories>};
-            <Categories data={trends} isList>Trends</Categories>
-            <Categories data={originals} isList>Originals</Categories>
+            {myList.length > 0 && <Categories data={myList}  >Favoritos</Categories>};
+            <Categories data={trends} >Trends</Categories>
+            <Categories data={originals} >Originals</Categories>
         </div>
     );
 };
